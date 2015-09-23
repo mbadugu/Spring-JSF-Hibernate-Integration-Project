@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+	 	xmlns:h="http://java.sun.com/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+	<h2 align="center"> Add Product </h2>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="ProductID"></h:outputLabel>
+			<h:inputText id="pid" value="#{productBean.id}"></h:inputText>
+				<!--  <f:validateLength minimum="3" maximum="4"></f:validateLength>-->
+			<h:message for="pid" errorStyle="color:red"></h:message>
+	
+			<h:outputLabel value="ProductName"></h:outputLabel>
+			<h:inputText id="pname" value="#{productBean.name}">
+				<!--<f:validator validatorId="productNameValidator"></f:validator>-->
+			</h:inputText>
+			<h:message for="pname"></h:message>
+			
+			<h:outputLabel value="ProductPrice"></h:outputLabel>
+			<h:inputText id="price" value="#{productBean.price}">
+				<f:convertNumber minFractionDigits="2"></f:convertNumber>
+				<f:convertNumber type="currency"></f:convertNumber>
+			</h:inputText>
+			<h:message for="price"></h:message>
+			
+			<h:outputLabel value="ProductDescription"></h:outputLabel>
+			<h:inputText id="description" value="#{productBean.description}"></h:inputText>
+			<h:message for="description"></h:message>
+			
+			<!--<h:outputLabel value="Date"></h:outputLabel>
+			  <h:inputText id="date" value="#{product.date}">
+				<f:convertDateTime value="MM/yyyy"></f:convertDateTime>
+			</h:inputText>-->
+		
+		</h:panelGrid>
+		<h:commandButton action="#{productBean.addProduct}" value="ADD PRODUCT"></h:commandButton>
+	
+		<h2>Product Records</h2>
+	
+		<h:dataTable border="1" value="#{productBean.productsList}" var="prod">
+			<h:column>
+			<f:facet name="header">ProductId</f:facet>
+			<h:outputText value="#{prod.id}"></h:outputText>
+			</h:column>
+			<h:column>
+			<f:facet name="header">ProductName</f:facet>
+			<h:outputText value="#{prod.name}"></h:outputText>
+			</h:column>
+			<h:column>
+			<f:facet name="header">ProductPrice</f:facet>
+			<h:outputText value="#{prod.price}"></h:outputText>
+			</h:column>
+			<h:column>
+			<f:facet name="header">ProductDescription</f:facet>
+			<h:outputText value="#{prod.description}"></h:outputText>
+			</h:column>
+		</h:dataTable>
+	
+	
+	</h:form>
+	
+</body>
+</html>
